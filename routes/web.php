@@ -23,10 +23,10 @@ Route::get('/', function () {
 //     return view('test');
 // });
 
-Route::get('/test',[BlogController::class, 'index']);
+Route::get('/test', [BlogController::class, 'index']);
 
-Route::post('/post',[BlogController::class, 'store']);
+Route::post('/post', [BlogController::class, 'store']);
 
-Route::get('/getdata',[BlogController::class,'show'])->name("getdata");
+Route::get('/getdata', [BlogController::class, 'show'])->name("getdata");
 
-
+Route::delete("/delete/id", [BlogController::class, 'deleterecord'])->name("deletedata");
