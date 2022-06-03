@@ -29,4 +29,9 @@ Route::post('/post', [BlogController::class, 'store']);
 
 Route::get('/getdata', [BlogController::class, 'show'])->name("getdata");
 
-Route::delete("/delete/id", [BlogController::class, 'deleterecord'])->name("deletedata");
+Route::get("/delete/{id}", [BlogController::class, 'deleterecord'])->name("deletedata");
+
+Route::get('editdata', [BlogController::class, 'updateform'])->name("editdata");
+Route::get('postdata/{id}', [BlogController::class, 'showdata']);
+Route::post("savedata", [BlogController::class, 'postdata'])->name('update-blog-data');
+// Route::post('/postdata/{id}', [BlogController::class], 'postdata')->name('postdata');

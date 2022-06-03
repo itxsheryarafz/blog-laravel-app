@@ -35,7 +35,45 @@ class BlogController extends Controller
         // return view('data',compact('d'));
     }
 
-    function delete($id)
+    function deleterecord($id)
     {
+
+        echo $id;
+        $user = Blog::find($id);
+        $user->delete();
+
+        return redirect()->route('getdata');
+        // $users = Blog::delete($id);
+        // return view('/test');
+    }
+
+
+    function updateform()
+    {
+        return view('update');
+    }
+
+    function showdata($id)
+    {
+        $users = Blog::find($id);
+        return view('update', ['blog' => $users]);
+    }
+
+    function postdata(Request $req)
+    {
+        $id = $req->input('userid');
+        $blog = Blog::find($id);
+
+        $inputs = $req->all();
+        // dd($inputs);
+        $blog->name = $inputs['name'];
+        $blog->description = $inputs['description'];
+        $blog->update();
+
+        return redirect()->route('getdata');
+
+        // DB::update('Update blog set name=?,description=? where id=?', [$name, $description, $id]);
+
+        // echo "Record Updated";
     }
 }
