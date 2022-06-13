@@ -17,16 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test', [BlogController::class, 'index']);
 
-// Route::get('/test',function()
-// {
-//     return view('test');
-// });
+Route::post('/post', [BlogController::class, 'store']);
 
-Route::get('/test',[BlogController::class, 'index']);
+Route::get('/getdata', [BlogController::class, 'show'])->name("getdata");
 
-Route::post('/post',[BlogController::class, 'store']);
+Route::get("/delete/{id}", [BlogController::class, 'deleterecord'])->name("deletedata");
 
-Route::get('/getdata',[BlogController::class,'show'])->name("getdata");
-
-
+Route::get('editdata', [BlogController::class, 'updateform'])->name("editdata");
+Route::get('postdata/{id}', [BlogController::class, 'showdata']);
+Route::post("savedata", [BlogController::class, 'postdata'])->name('update-blog-data');
+// Route::post('/postdata/{id}', [BlogController::class], 'postdata')->name('postdata');
